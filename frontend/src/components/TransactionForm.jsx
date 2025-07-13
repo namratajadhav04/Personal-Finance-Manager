@@ -1,10 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { addTransaction } from "../services/api";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 
 function TransactionForm({ onTransactionAdded }) {
   const {
@@ -15,54 +11,127 @@ function TransactionForm({ onTransactionAdded }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    await addTransaction(data);
-    reset();
-    onTransactionAdded();
+    try {
+      await addTransaction(data);
+      reset();
+      onTransactionAdded();
+    } catch (err) {
+      console.error("Failed to add transaction:", err);
+    }
   };
 
   return (
-    <Card className="shadow-xl">
-      <CardContent className="p-6 space-y-4">
-        <h2 className="text-xl font-bold">➕ Add Transaction</h2>
+    <div
+      className="py-5"
+      style={{
+        backgroundImage: "linear-gradient(to right, #f8fafc, #e0e7ff)",
+        minHeight: "100vh",
+      }}
+    >
+      <div className="container d-flex justify-content-center">
+        <div
+          className="card shadow-lg border-0 w-100"
+          style={{ maxWidth: "600px" }}
+        >
+          <div className="card-body p-5">
+            <h3
+              className="card-title text-center text-primary mb-4"
+              style={{ fontFamily: "Georgia" }}
+            >
+              ➕ Add New Transaction
+            </h3>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <Label>Amount</Label>
-            <Input type="number" {...register("amount", { required: true })} />
-            {errors.amount && (
-              <p className="text-red-500 text-sm">Amount is required</p>
-            )}
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+              {/* Amount */}
+              <div className="mb-3">
+                <label htmlFor="amount" className="form-label fw-semibold">
+                  Amount
+                </label>
+                <input
+                  type="number"
+                  id="amount"
+                  className={`form-control ${
+                    errors.amount ? "is-invalid" : ""
+                  }`}
+                  placeholder="Enter amount"
+                  {...register("amount", { required: true })}
+                />
+                {errors.amount && (
+                  <div className="invalid-feedback">Amount is required.</div>
+                )}
+              </div>
+
+              {/* Description */}
+              <div className="mb-3">
+                <label htmlFor="description" className="form-label fw-semibold">
+                  Description
+                </label>
+                <input
+                  type="text"
+                  id="description"
+                  className={`form-control ${
+                    errors.description ? "is-invalid" : ""
+                  }`}
+                  placeholder="e.g. Grocery shopping"
+                  {...register("description", { required: true })}
+                />
+                {errors.description && (
+                  <div className="invalid-feedback">
+                    Description is required.
+                  </div>
+                )}
+              </div>
+
+              {/* Category */}
+              <div className="mb-3">
+                <label htmlFor="category" className="form-label fw-semibold">
+                  Category
+                </label>
+                <select
+                  id="category"
+                  className={`form-select ${
+                    errors.category ? "is-invalid" : ""
+                  }`}
+                  {...register("category", { required: true })}
+                >
+                  <option value="">-- Select Category --</option>
+                  <option value="Food">Food</option>
+                  <option value="Rent">Rent</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Health">Health</option>
+                  <option value="Travel">Travel</option>
+                  <option value="Others">Others</option>
+                </select>
+                {errors.category && (
+                  <div className="invalid-feedback">Category is required.</div>
+                )}
+              </div>
+
+              {/* Date */}
+              <div className="mb-4">
+                <label htmlFor="date" className="form-label fw-semibold">
+                  Date
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  className={`form-control ${errors.date ? "is-invalid" : ""}`}
+                  {...register("date", { required: true })}
+                />
+                {errors.date && (
+                  <div className="invalid-feedback">Date is required.</div>
+                )}
+              </div>
+
+              <button type="submit" className="btn btn-primary w-100 fw-bold">
+                Add Transaction
+              </button>
+            </form>
           </div>
-          <br></br>
-
-          <div>
-            <Label>Description</Label>
-            <Input
-              type="text"
-              {...register("description", { required: true })}
-            />
-            {errors.description && (
-              <p className="text-red-500 text-sm">Description is required</p>
-            )}
-          </div>
-          <br></br>
-
-          <div>
-            <Label>Date</Label>
-            <Input type="date" {...register("date", { required: true })} />
-            {errors.date && (
-              <p className="text-red-500 text-sm">Date is required</p>
-            )}
-          </div>
-          <br></br>
-          <br></br>
-
-          <Button type="submit" className="w-full">
-            Add Transaction
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+        </div>
+      </div>
+    </div>
   );
 }
 

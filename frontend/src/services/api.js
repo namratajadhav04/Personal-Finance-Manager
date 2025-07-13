@@ -12,10 +12,10 @@ export const addTransaction = (data) => {
   API.post("/add", data);
 };
 
-export const editTransaction = (id, data) => {
-  API.put("/edit/${_id}");
+export const editTransaction = (_id, data) => {
+  API.put(`/edit/${_id}`, data);
 };
 
-export const deleteTransaction = (id) => {
-  API.delete("/delete/${_id}");
+export const deleteTransaction = (_id) => {
+  API.delete(`/delete/${_id}`);
 };

@@ -6,6 +6,7 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
 
 function MonthlyBarChart({ transactions }) {
@@ -25,16 +26,33 @@ function MonthlyBarChart({ transactions }) {
   }));
 
   return (
-    <div className="mt-10">
-      <h2 className="text-xl font-semibold mb-4">Monthly Expenses</h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={chartData}>
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="total" fill="#3b82f6" />
-        </BarChart>
-      </ResponsiveContainer>
+    <div className="card shadow-sm border-0 h-100">
+      <div className="card-body">
+        <h4
+          className="card-title text-primary mb-4"
+          style={{ fontFamily: "Georgia" }}
+        >
+          📊 Monthly Expenses Overview
+        </h4>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={chartData}>
+            <XAxis dataKey="month" stroke="#8884d8" />
+            <YAxis stroke="#8884d8" />
+            <Tooltip
+              contentStyle={{ backgroundColor: "#f8fafc", borderRadius: 8 }}
+              itemStyle={{ color: "#0f172a" }}
+            />
+            <Legend />
+            <Bar
+              dataKey="total"
+              fill="#6366f1"
+              radius={[6, 6, 0, 0]}
+              name="Total Spent"
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

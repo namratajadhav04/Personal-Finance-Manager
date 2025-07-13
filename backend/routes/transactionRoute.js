@@ -12,9 +12,9 @@ router.get("/alltransaction", async (req, res) => {
 });
 
 router.post("/add", async (req, res) => {
-  const { amount, description } = req.body;
+  const { amount, description, category } = req.body;
   try {
-    const u = new Transaction({ amount, description });
+    const u = new Transaction({ amount, description, category });
     await u.save();
     res.status(201).json({ message: "Transaction created" });
   } catch (error) {
@@ -24,11 +24,11 @@ router.post("/add", async (req, res) => {
 
 router.put("/edit/:_id", async (req, res) => {
   const { _id } = req.params;
-  const { amount, description } = req.body;
+  const { amount, description, category } = req.body;
   try {
     const u = await Transaction.findByIdAndUpdate(
       { _id },
-      { amount, description },
+      { amount, description, category },
       { new: true }
     );
     res.status(201).json({ message: "Transaction updated" });
