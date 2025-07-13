@@ -49,7 +49,9 @@ Simplify budgeting, track spending, and gain insights into your money—all from
 ---
 
 # UI capture
-![image](https://github.com/user-attachments/assets/8ff4da89-c553-41af-9216-af9fc368c86f)
+<img width="1919" height="927" alt="image" src="https://github.com/user-attachments/assets/c339e7ab-451b-4524-b2dd-ce3d38c47266" />
+<img width="1918" height="928" alt="image" src="https://github.com/user-attachments/assets/fb9c464e-cdee-49bb-9382-e239abab2f53" />
+
 
 ---
 
