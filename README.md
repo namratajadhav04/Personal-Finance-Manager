@@ -1,5 +1,5 @@
 
-# 🏦 Personal Finance Manager
+# 🏦 BudgetNest - Where your budgets live securely
 
 **A modern full-stack personal finance manager and expense tracker**
 Simplify budgeting, track spending, and gain insights into your money—all from one intuitive app.
@@ -55,9 +55,4 @@ Simplify budgeting, track spending, and gain insights into your money—all from
 
 ---
 
-# 📦 Deployment
-* The app is live on Vercel.
-* 🔗 Live Demo: 
-
----
 
