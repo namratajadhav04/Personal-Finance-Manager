@@ -25,7 +25,7 @@ function TransactionForm({ onTransactionAdded }) {
       className="py-5"
       style={{
         backgroundImage: "linear-gradient(to right, #f8fafc, #e0e7ff)",
-        minHeight: "100vh",
+        minHeight: "50vh",
       }}
     >
       <div className="container d-flex justify-content-center">
